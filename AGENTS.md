@@ -7,10 +7,14 @@
 - Avoid unnecessary abstractions.
 - Use golang version 1.24.x
 - Prefer standard library packages.
+- Prefer `errors.Is` and `errors.As` over string matching for errors.
+- Return errors from library code; do not panic for expected failure paths.
+- Avoid `init()` for business logic or hidden setup.
+- Keep concurrency explicit and testable; avoid goroutines without clear ownership.
 
 ## Coding Rules
 
-- Run gofmt and go test before finishing. Refer to TESTING.md
+- Run `gofmt -w .` and `go test ./...` before finishing. Refer to TESTING.md for the full quality bar.
 - Keep functions focused.
 - Avoid premature optimization.
 
@@ -18,7 +22,7 @@ Contains:
 - Project description lives in PROJECT.md
 - Testing rules are in TESTING.md
 - Docs live in /docs
-- Hig-level architecture lives in /docs/ARCHITECTURE.MD
+- High-level architecture lives in /docs/ARCHITECTURE.md
 
 Rules:
 - Only open files that are relevant to the current task

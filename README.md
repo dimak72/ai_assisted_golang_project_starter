@@ -14,6 +14,14 @@ This is not a comprehensive guide to building production software with AI. In a 
 
 4. Use `AGENTS.md` as a starting point for AI guidance. Keep instructions concise. Overly verbose prompts can reduce model quality and make output harder to manage.
 
+   For harness-specific setup:
+
+   - Pick the tool you will use for the interview, such as Codex, Claude Code, Cursor, or another coding agent.
+   - Confirm that the harness can run `gofmt`, `go test`, `go vet`, and `go run` in the repository.
+   - If the harness uses a different instruction file, copy or symlink `AGENTS.md` to the expected name. For example, Claude Code commonly uses `CLAUDE.md`.
+   - Keep local harness and IDE files out of version control.
+   - Start fresh threads for major phases so the active context stays focused.
+
 5. Use `TESTING.md` to define your test strategy. Tests are essential when working with AI-generated code.
 
 6. Start planning in a fresh conversation or thread. Use `./prompts/initial-planning.md` to prompt the model and establish a plan.
@@ -24,7 +32,7 @@ This is not a comprehensive guide to building production software with AI. In a 
 
 9. Fix errors and problems iteratively in the same conversation/thread. If the interviewer asks for new requirements, treat them as a separate iteration.
 
-10. Open a new review conversation/thread when the implementation is ready. Use built-in review skills or checklists to identify critical issues. If time is limited, communicate that clearly and focus on the highest-risk items.
+10. Open a new review conversation/thread when the implementation is ready. Use built-in review skills, harness-specific review commands, or `./prompts/review.md` to identify critical issues. If time is limited, communicate that clearly and focus on the highest-risk items.
 
 11. Optionally, perform a security scan or mention security-conscious practices. OpenAI provides curated skills such as Security Best Practices: https://github.com/openai/skills/tree/main/skills/.curated/security-best-practices.
 
@@ -38,15 +46,7 @@ If the interviewer provides new requirements, follow this pattern:
 
 2. Talk to the interviewer about the preferred path forward. Explain whether the new work is feasible within the remaining time and what trade-offs exist.
 
-3. Start a new conversation/thread with a prompt such as:
-
-```
-We are now going to implement new requirements:
-
-<Insert new requirements here. Make sure to collaborate with the interviewer on details>
-
-Propose a plan
-```
+3. Start a new conversation/thread with `./prompts/new-requirement.md`.
 
 4. Review and iterate on the plan, then approve it.
 
@@ -59,6 +59,7 @@ Propose a plan
 - Keep the process lightweight and human-driven: define requirements, review AI output, and validate with tests.
 - A working solution that builds, runs, and passes tests is the primary goal.
 - Communicate clearly with the interviewer about assumptions, trade-offs, and timelines.
+- Keep context targeted. Prefer fresh threads for new phases, avoid loading whole directories without a reason, and use search before opening broad sets of files.
 
 ## Bonus points
 

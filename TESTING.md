@@ -11,6 +11,29 @@ Tests should prioritize:
 
 Avoid overly complex test setups.
 
+## Required Commands
+
+Run these before considering implementation work complete:
+
+```sh
+gofmt -w .
+go test ./...
+```
+
+When time allows, also run:
+
+```sh
+go vet ./...
+```
+
+If the project includes a `Makefile`, the equivalent command is:
+
+```sh
+make check
+```
+
+In a freshly created starter with no Go packages yet, `make check` should report that there are no packages to test or vet. After implementation begins, `go test ./...` must run against the project packages.
+
 ## Test Structure
 
 Prefer table-driven tests when appropriate.
